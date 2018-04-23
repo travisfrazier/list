@@ -19,8 +19,11 @@ buttonAdd.addEventListener('click', () => {
 //Mark task complete and remove item
 ul.addEventListener('click', (event) => {
   event.preventDefault();
-  if (event.target.tagName == 'SPAN') {
+  
+  if (event.target.tagName === 'SPAN') {
     event.target.parentNode.classList.toggle('complete');
+  } else if (event.target.tagName === 'LI') {
+    event.target.classList.toggle('complete');
   } else if (event.target.className == 'remove') {
      event.target.parentNode.parentNode.removeChild(event.target.parentNode);
   } 
@@ -30,7 +33,7 @@ ul.addEventListener('click', (event) => {
 ul.addEventListener('click', (event) => {
   event.preventDefault();
   if (event.target.className == 'edit') {
-    let text = event.target.parentNode.textContent;
+    let text = event.target.parentNode.querySelector('.item').textContent;
     event.target.parentNode.innerHTML = `<input id="newItem" type="text" value="${text}"><button id="save" class="add" type="submit" class="btn">Save</button>`;
   }
 });
